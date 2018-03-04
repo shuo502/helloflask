@@ -1,28 +1,28 @@
 #!/usr/bin/env python
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 
 
-"""
-@version: ??
-@author: mum
-@license: Apache Licence 
-@contact: shuo502@163.com
-@author: ‘yo‘
-@site: http://github.com/shuo502
-@software: PyCharm
-@file: app.py.py
-@time: 2018/1/23 15:29
-"""
+import logging
+import os
 from flask import *
-from flask import Flask
 app = Flask(__name__)
+if 'PORT' in os.environ:
+    port = int(os.environ['PORT'])
+else:
+    port = 8080
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-@app.route('/in/')
-def inx():
-    pass
-    return 'x'
+@app.errorhandler(404)
+def page_not_found(e):
+    return str(404)
+@app.route("/")
+def index():
+    return "hello"
+
 if __name__ == '__main__':
-    app.run(debug=True,port=8080)
+    try:
+        # application.run(host='0.0.0.0', port=port)
+        from wsgiref.simple_server import make_server
+        httpd = make_server('0.0.0.0', port, app)
+        httpd.serve_forever()
+    except Exception as e:
+        logging.exception(e, stack_info=True)

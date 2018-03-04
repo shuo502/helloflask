@@ -1,35 +1,32 @@
 #!/usr/bin/env python
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+from setuptools import setup
+
+requirements = list()
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
+dependencies = list()
+with open('dependencies.txt') as f:
+    requirements = f.read().splitlines()
+
+readme = 'ShadowSocksShare'
+
+setup(name='ShadowSocks-share',
+
+      # PEP 440 -- Version Identification and Dependency Specification
+      version='0.0.1',
+
+      # Project description
+
+      long_description=readme,
+
+      # Author details
 
 
-from setuptools import setup, find_packages
+      # Project details
 
-setup(
-    name='MyApp',  # 应用名
-    version='1.0',  # 版本号
-    author_email = "shuo502@163.com",
-    description = "This is a sample flask package",
-    keywords = "hello world example",
-    url = "http://example.com/HelloWorld/",   # 项目主页
-    packages=find_packages(),  # 包括在安装包内的Python包
-    include_package_data=True,  # 启用清单文件MANIFEST.in
-    exclude_package_date={'': ['.gitignore']},
-    install_requires=[  # 依赖列表
-        'click >= 6.7',
-        'Flask >= 0.12.2',
-        'itsdangerous >= 0.24',
-        'Jinja2 >= 2.10',
-        'MarkupSafe >= 1.0',
-        'Werkzeug >= 0.14.1'
-
-    ]
-)
-
-
-if __name__ == '__main__':
-    #pip freeze >requirements.txt
-    #pip install -r requirements.txt
-
-    pass
-
-
+      # Project dependencies
+      dependency_links=dependencies,
+      install_requires=requirements,
+      )
