@@ -1,0 +1,10 @@
+Flask
+pysocks
+zbar-py
+numpy
+Flask-Script
+regex
+beautifulsoup4
+requests
+pillow
+cfscrape
