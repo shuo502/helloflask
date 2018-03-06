@@ -14,13 +14,15 @@ else:
 @app.errorhandler(404)
 def page_not_found(e):
     return str(404)
+
 @app.route("/")
 def index():
     return "hello"
 
 if __name__ == '__main__':
+
     try:
-        # application.run(host='0.0.0.0', port=port)
+        app.run(host='0.0.0.0', port=port,debug=True)
         from wsgiref.simple_server import make_server
         httpd = make_server('0.0.0.0', port, app)
         httpd.serve_forever()
